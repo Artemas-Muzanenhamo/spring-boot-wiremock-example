@@ -24,10 +24,9 @@ dependencies {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
     testImplementation("com.google.code.gson:gson:2.8.6")
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
+    testImplementation("org.junit.jupiter:junit-jupiter:5.6.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.6.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.1")
 }
 
 tasks.withType<KotlinCompile> {
@@ -39,4 +38,5 @@ tasks.withType<KotlinCompile> {
 
 tasks.test {
     useJUnitPlatform()
+
 }

@@ -27,6 +27,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.1")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.6.1")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.6.1")
 }
 
 tasks.withType<KotlinCompile> {
@@ -36,7 +37,10 @@ tasks.withType<KotlinCompile> {
     }
 }
 
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
 tasks.test {
     useJUnitPlatform()
-
 }

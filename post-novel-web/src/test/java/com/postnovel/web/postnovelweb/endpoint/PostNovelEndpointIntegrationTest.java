@@ -1,5 +1,6 @@
 package com.postnovel.web.postnovelweb.endpoint;
 
+import com.postnovel.web.postnovelweb.domain.Post;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,11 +12,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static io.restassured.RestAssured.given;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class PostNovelEndpointIntegrationTest {
 
+    private static final int USER_ID = 123;
+    private static final int ID = 1;
+    private static final String TITLE = "Some title";
+    private static final String BODY = "Some post message";
     @LocalServerPort
     private int port;
 
@@ -27,15 +33,18 @@ class PostNovelEndpointIntegrationTest {
     @Test
     @DisplayName("Should get a single PostNovel post by id")
     void getPostById() {
-        String response = given()
+        Post expectedPost = new Post(USER_ID, ID, TITLE, BODY);
+
+        Post post = given()
                 .when()
                 .get("/posts/1")
                 .then()
                 .statusCode(HttpStatus.OK.value())
                 .extract()
-                .jsonPath()
-                .prettify();
+                .body()
+                .as(Post.class);
 
-//        assertThat(response).isEqualTo(matchesJsonSchemaInClasspath("json/posts.json"));
+        assertThat(post).isNotNull();
+        assertThat(post).isEqualTo(expectedPost);
     }
 }

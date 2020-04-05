@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @RestController
 public class PostNovelEndpoint {
 
@@ -15,7 +17,7 @@ public class PostNovelEndpoint {
         this.postNovelService = postNovelService;
     }
 
-    @GetMapping("/posts/{id}")
+    @GetMapping(value = "/posts/{id}", produces = APPLICATION_JSON_VALUE)
     public Post retrieveAPost(@PathVariable int id) {
         return postNovelService.getPostById(id);
     }

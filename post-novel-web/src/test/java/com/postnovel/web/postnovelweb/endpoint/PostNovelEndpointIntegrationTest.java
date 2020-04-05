@@ -1,6 +1,6 @@
 package com.postnovel.web.postnovelweb.endpoint;
 
-import com.postnovel.web.postnovelweb.WireMockConfig;
+import com.postnovel.web.postnovelweb.PostNovelServiceStub;
 import com.postnovel.web.postnovelweb.domain.Post;
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
@@ -25,19 +25,19 @@ class PostNovelEndpointIntegrationTest {
     private static final int ID = 1;
     private static final String TITLE = "Some title";
     private static final String BODY = "Some post message";
-    private WireMockConfig wireMockConfig = new WireMockConfig();
+    private PostNovelServiceStub postNovelServiceStub = new PostNovelServiceStub();
     @LocalServerPort
     private int port;
 
     @BeforeEach
     void setUp() {
-        wireMockConfig.getPostNovelServiceServer();
+        postNovelServiceStub.getPostNovelServiceServer();
         RestAssured.port = port;
     }
 
     @AfterEach
     void cleanup() {
-        wireMockConfig.stopPostNovelServiceServer();
+        postNovelServiceStub.stopPostNovelServiceServer();
     }
 
     @Test
@@ -45,7 +45,7 @@ class PostNovelEndpointIntegrationTest {
     void getPostById() throws Exception {
         RestAssured.defaultParser = Parser.JSON;
         Post expectedPost = new Post(USER_ID, ID, TITLE, BODY);
-        wireMockConfig.stubGetPostMapping();
+        postNovelServiceStub.stubGetPostMapping();
 
         Post post = given()
                 .when()

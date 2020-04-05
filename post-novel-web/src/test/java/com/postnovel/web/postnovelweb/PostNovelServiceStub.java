@@ -35,6 +35,7 @@ public class PostNovelServiceStub {
         ObjectMapper mapper = new ObjectMapper();
         Post expectedPost = new Post(USER_ID, ID, TITLE, BODY);
         String postJsonString = mapper.writeValueAsString(expectedPost);
+        System.out.println(postJsonString);
 
         postNovelServiceServer.stubFor(
                 get(urlEqualTo("/posts/1"))

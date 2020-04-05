@@ -1,7 +1,7 @@
 package com.postnovel.web.postnovelweb.endpoint;
 
 import com.postnovel.web.postnovelweb.domain.Post;
-import com.postnovel.web.postnovelweb.service.PostNovelService;
+import com.postnovel.web.postnovelweb.client.PostNovelService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;

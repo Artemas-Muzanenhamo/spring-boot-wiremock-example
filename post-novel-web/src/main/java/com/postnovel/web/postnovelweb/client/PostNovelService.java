@@ -1,4 +1,4 @@
-package com.postnovel.web.postnovelweb.service;
+package com.postnovel.web.postnovelweb.client;
 
 import com.postnovel.web.postnovelweb.domain.Post;
 import org.springframework.stereotype.Service;

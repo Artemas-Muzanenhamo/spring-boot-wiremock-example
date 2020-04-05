@@ -1,13 +1,13 @@
-package com.wiremock.example.springbootwiremockexample;
+package com.postnovel.web.postnovelweb;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringBootWiremockExampleApplication {
+public class PostNovelWebApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringBootWiremockExampleApplication.class, args);
+        SpringApplication.run(PostNovelWebApplication.class, args);
     }
 
 }

@@ -10,3 +10,4 @@
 rootProject.name = 'spring-boot-wiremock-example'
 
 include 'post-novel-web'
+include 'post-novel-service'

@@ -17,7 +17,16 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    testImplementation('io.rest-assured:rest-assured:3.3.0')
+    testImplementation 'io.rest-assured:json-schema-validator:3.3.0'
 }
+
+//configurations.all {
+//    resolutionStrategy {
+//        force 'io.rest-assured:xml-path:3.3.0'
+//        force 'io.rest-assured:json-path:3.3.0'
+//    }
+//}
 
 test {
     useJUnitPlatform()

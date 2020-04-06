@@ -16,8 +16,8 @@ public class PostNovelServiceStub {
     private WireMockServer postNovelServiceServer;
     private static final int USER_ID = 123;
     private static final int ID = 1;
-    private static final String TITLE = "Some title";
-    private static final String BODY = "Some post message";
+    private static final String TITLE = "Stubbed title";
+    private static final String BODY = "Stubbed post message";
 
     public void getPostNovelServiceServer() {
         if (postNovelServiceServer == null) {

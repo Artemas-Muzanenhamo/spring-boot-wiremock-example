@@ -23,8 +23,8 @@ class PostNovelEndpointIntegrationTest {
 
     private static final int USER_ID = 123;
     private static final int ID = 1;
-    private static final String TITLE = "Some title";
-    private static final String BODY = "Some post message";
+    private static final String TITLE = "Stubbed title";
+    private static final String BODY = "Stubbed post message";
     private PostNovelServiceStub postNovelServiceStub = new PostNovelServiceStub();
     @LocalServerPort
     private int port;

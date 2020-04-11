@@ -6,10 +6,6 @@ group = 'com.postnovel.integrationtest'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
-//repositories {
-//    mavenCentral()
-//}
-
 dependencies {
     testImplementation project(':post-novel-web')
     testImplementation('io.rest-assured:rest-assured:3.3.0')

@@ -1,34 +1,31 @@
-plugins {
-    id 'org.springframework.boot' version '2.2.6.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-    id 'java'
-}
-
 group = 'com.postnovel.web'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+
+bootJar {
+    mainClassName = 'com.postnovel.web.postnovelweb.PostNovelWebApplication'
+    enabled = true
+}
+
+jar {
+    enabled = true
+}
+
+bootRun {
+    main = 'com.postnovel.web.postnovelweb.PostNovelWebApplication'
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
-    testImplementation('io.rest-assured:rest-assured:3.3.0')
-    testImplementation 'io.rest-assured:json-schema-validator:3.3.0'
-    testImplementation 'com.github.tomakehurst:wiremock:2.26.3'
 }
-
-//configurations.all {
-//    resolutionStrategy {
-//        force 'io.rest-assured:xml-path:3.3.0'
-//        force 'io.rest-assured:json-path:3.3.0'
-//    }
-//}
 
 test {
     useJUnitPlatform()
+}
+
+springBoot {
+    mainClassName = 'com.postnovel.web.postnovelweb.PostNovelWebApplication'
 }

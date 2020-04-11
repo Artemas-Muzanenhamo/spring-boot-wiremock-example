@@ -1,4 +1,4 @@
-package com.postnovel.web.postnovelweb;
+package com.postnovel.integrationtest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,19 +8,21 @@ import org.springframework.http.HttpStatus;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 
 public class PostNovelServiceStub {
     private static final int wireMockPort = 8081;
-
     private WireMockServer postNovelServiceServer;
+
     private static final int USER_ID = 123;
     private static final int ID = 1;
     private static final String TITLE = "Stubbed title";
     private static final String BODY = "Stubbed post message";
 
     public void getPostNovelServiceServer() {
-        if (postNovelServiceServer == null) {
+        if (isNull(postNovelServiceServer)) {
             postNovelServiceServer = new WireMockServer(wireMockConfig().port(wireMockPort));
             postNovelServiceServer.start();
         }
@@ -28,7 +30,9 @@ public class PostNovelServiceStub {
     }
 
     public void stopPostNovelServiceServer() {
-        postNovelServiceServer.stop();
+        if (nonNull(postNovelServiceServer)) {
+            postNovelServiceServer.stop();
+        }
     }
 
     public void stubGetPostMapping() throws JsonProcessingException {

@@ -1,6 +1,7 @@
-package com.postnovel.web.postnovelweb.endpoint;
+package com.postnovel.integrationtest.endpoint;
 
-import com.postnovel.web.postnovelweb.PostNovelServiceStub;
+import com.postnovel.integrationtest.PostNovelServiceStub;
+import com.postnovel.web.postnovelweb.PostNovelWebApplication;
 import com.postnovel.web.postnovelweb.domain.Post;
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
@@ -8,17 +9,17 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+        classes = PostNovelWebApplication.class
+)
 class PostNovelEndpointIntegrationTest {
 
     private static final int USER_ID = 123;

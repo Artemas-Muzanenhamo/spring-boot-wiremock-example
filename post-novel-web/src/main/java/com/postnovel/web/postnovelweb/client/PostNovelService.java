@@ -9,6 +9,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 import static java.lang.String.format;
+import static java.util.Objects.nonNull;
 
 @Service
 public class PostNovelService {
@@ -26,11 +27,16 @@ public class PostNovelService {
     }
 
     public Post getPostById(int id) {
-        URI uri = UriComponentsBuilder.newInstance()
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance()
                 .scheme(scheme)
                 .host(host)
-                .port(port)
-                .path(format("/posts/%s", id))
+                .path(format("/posts/%s", id));
+
+        if (nonNull(port)) {
+            uriComponentsBuilder.port(port);
+        }
+
+        URI uri = uriComponentsBuilder
                 .build()
                 .toUri();
 

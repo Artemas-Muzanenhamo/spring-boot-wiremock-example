@@ -9,7 +9,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 import static java.lang.String.format;
-import static java.util.Objects.nonNull;
 
 @Service
 public class PostNovelService {
@@ -27,16 +26,13 @@ public class PostNovelService {
     }
 
     public Post getPostById(int id) {
-        UriComponentsBuilder uriBuilder = UriComponentsBuilder.newInstance()
+        URI uri = UriComponentsBuilder.newInstance()
                 .scheme(scheme)
                 .host(host)
-                .path(format("/posts/%s", id));
-
-        if (nonNull(port)) {
-            uriBuilder.port(port);
-        }
-
-        URI uri = uriBuilder.build().toUri();
+                .port(port)
+                .path(format("/posts/%s", id))
+                .build()
+                .toUri();
 
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(uri, Post.class);

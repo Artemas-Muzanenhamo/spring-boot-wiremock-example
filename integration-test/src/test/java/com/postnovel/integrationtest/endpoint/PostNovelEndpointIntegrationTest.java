@@ -9,9 +9,12 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,13 +23,16 @@ import static org.assertj.core.api.Assertions.assertThat;
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         classes = PostNovelWebApplication.class
 )
+@ContextConfiguration(classes = PostNovelServiceStub.class)
+@TestPropertySource("/test.properties")
 class PostNovelEndpointIntegrationTest {
 
     private static final int USER_ID = 123;
     private static final int ID = 1;
     private static final String TITLE = "Stubbed title";
     private static final String BODY = "Stubbed post message";
-    private PostNovelServiceStub postNovelServiceStub = new PostNovelServiceStub();
+    @Autowired
+    private PostNovelServiceStub postNovelServiceStub;
     @LocalServerPort
     private int port;
 
